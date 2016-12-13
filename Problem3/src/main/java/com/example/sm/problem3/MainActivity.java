@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import static com.example.sm.problem3.Person.money;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         for(CustomerThread ct : list){
 
             try {
-                // need something here
+                ct.wait(10);
             } catch (InterruptedException e) { }
         }
 
@@ -52,6 +54,12 @@ class CustomerThread extends Thread{
         this.customer = customer;
     }
     // need something here
+
+    public void run() {
+        int m = (int)Math.random() * 1000;
+        customer.spent_money += m;
+        money -= m;
+    }
 }
 
 abstract class Person{
@@ -71,6 +79,10 @@ class Customer extends Person{
     }
 
     // need something here
+    void work() {
+
+    }
+
 }
 
 
@@ -82,8 +94,16 @@ class Manager extends Person{
     }
 
     void sort(){ // 직접 소팅 알고리즘을 이용하여 코딩해야함. 자바 기본 정렬 메소드 이용시 감
-
-        // need something here
+        int temp ;
+        for ( int i = 0 ; i < 10 ; i ++ ) {
+            for ( int j = 1 ; j < 10 ; j ++ ) {
+                if ( list.get(j).spent_money > list.get(j-1).spent_money ) {
+                    temp = list.get(j).spent_money;
+                    list.get(j).spent_money = list.get(j-1).spent_money;
+                    list.get(j-1).spent_money = temp;
+                }
+            }
+        }
 
     }
 

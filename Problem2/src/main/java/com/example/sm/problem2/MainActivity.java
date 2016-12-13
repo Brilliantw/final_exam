@@ -11,12 +11,12 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     MyBaseAdapter adapter;
     ListView listview;
+    ArrayList<Employee> emp_list = new ArrayList<Employee>();
+    int a;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // need something here
 
         adapter = new MyBaseAdapter(this, emp_list);
         listview = (ListView) findViewById(R.id.listView1) ;
@@ -33,23 +33,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()){
             case R.id.btn_inc:
-                // need something here
+                employee = new Employee("",0,0);
+                a = emp_list.indexOf(employee);
+                employee = emp_list.get(a);
+                employee.increase();
+                emp_list.set(a,employee);
                 break;
 
             case R.id.btn_dec:
-                // need something here
+                employee = new Employee("",0,0);
+                a = emp_list.indexOf(employee);
+                employee = emp_list.get(a);
+                employee.decrease();
+                emp_list.set(a,employee);
                 break;
 
             case R.id.btn_store:
-                // need something here
+                employee = new Employee("",0,0);
+                emp_list.add(employee);
                 break;
 
             case R.id.btn_modify:
-                // need something here
+                employee = new Employee("",0,0);
+                a = emp_list.indexOf(employee);
+                employee = emp_list.get(a);
+                employee.setSalary(0);
+                employee.setName("");
+                employee.setAge(0);
+                emp_list.set(a,employee);
                 break;
 
             case R.id.btn_delete:
-                // need something here
+                employee = new Employee("",0,0);
+                a = emp_list.indexOf(employee);
+                emp_list.remove(a);
                 break;
         }
     }
